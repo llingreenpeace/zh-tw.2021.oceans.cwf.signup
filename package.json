@@ -1,0 +1,38 @@
+{
+  "name": "gpea-en-62911-zh-tw.2020-plastic-retailer-seveneleven.signup",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader",
+    "progressbar.js": "^1.1.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.13.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-scripts": "3.4.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build:en": "PUBLIC_URL=https://change.greenpeace.org.tw/2020/petition/zh-TW.2020-plastic-retailer-seveneleven.signup react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy": "yarn run build:en && gpea-npm-en-uploader"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
