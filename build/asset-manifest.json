@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/css/main.3140349e.chunk.css",
+    "main.js": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/main.23ad4eb2.chunk.js",
+    "main.js.map": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/main.23ad4eb2.chunk.js.map",
+    "runtime-main.js": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/runtime-main.b68749ec.js",
+    "runtime-main.js.map": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/runtime-main.b68749ec.js.map",
+    "static/js/2.58ae043f.chunk.js": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/2.58ae043f.chunk.js",
+    "static/js/2.58ae043f.chunk.js.map": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/2.58ae043f.chunk.js.map",
+    "index.html": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/index.html",
+    "precache-manifest.5de6a04ed9c823453dd1a9b142497e66.js": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/precache-manifest.5de6a04ed9c823453dd1a9b142497e66.js",
+    "service-worker.js": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/service-worker.js",
+    "static/css/main.3140349e.chunk.css.map": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/css/main.3140349e.chunk.css.map",
+    "static/js/2.58ae043f.chunk.js.LICENSE.txt": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/static/js/2.58ae043f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b68749ec.js",
+    "static/js/2.58ae043f.chunk.js",
+    "static/css/main.3140349e.chunk.css",
+    "static/js/main.23ad4eb2.chunk.js"
+  ]
+}

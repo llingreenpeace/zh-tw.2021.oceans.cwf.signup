@@ -1,4 +1,13 @@
 $main--color: #f2443e;
+$secondary--color: #7fd0ff;
+
+.main--text {
+    color: $main--color;
+}
+
+.secondary--text {
+    color: $secondary--color;
+}
 
 body {
     overflow-x: hidden;
@@ -12,6 +21,10 @@ body {
     position: absolute;
     z-index: 2;
 }
+.headline {
+    margin-bottom: 40px;
+}
+
 .section-title-main {
     &:before {
         content: "-";
@@ -25,12 +38,6 @@ body {
 .slider-text-middle-main {
     padding:20px;
 }
-// @media (max-width: 767px) {
-//     h2 {
-//         font-size: 1.5rem;
-//     }
-// }
-
 // main
 .float-bg {
     background-position: center;
@@ -59,16 +66,16 @@ body {
     }
 }
 
-
 #third {
     padding: 0 !important;
     line-height: 2;
     position: relative;
     .parallax-fix {
-        min-height: 600px;
-        height: 40vh;
+        // min-height: 600px;
+        height: auto;
         .opacity-full {
             padding-top: 10%;
+            padding-bottom: 10%;
             h3 {
                 line-height: 1.6;
             }
@@ -93,17 +100,17 @@ body {
         .contact-left {
             padding-top: 50px;
             h1 {
-                line-height: 1.2;;
+                line-height: 1.4;
                 margin-bottom: 30px;
             }
         
             h4 {
-                line-height: 1.2;;
+                line-height: 1.4;
                 margin-bottom: 30px;
             }
         
             h6 {
-                line-height: 1.2;;
+                line-height: 1.4;
                 margin-bottom: 30px;
             }
         }
@@ -197,11 +204,8 @@ body {
     
 }
 
-.main--text {
-    color: $main--color;
-}
-
-.bg-transparent-deep-main{ background: rgba(242, 68, 62,.9) !important}
+// modified for policy petition campaign
+.bg-transparent-deep-main { background: rgba(242, 68, 62,.9) !important}
 
 .red-label {
     background-color: $main--color;
@@ -210,6 +214,9 @@ body {
     margin-bottom: 10%;
     margin-left: -6px;
     font-size: 1.2rem;
+}
+#speakers {
+    padding-top: 5%;
 }
 #intro {
     height: 100vh;
@@ -233,4 +240,9 @@ body {
 
 .third-section {
     background-repeat: no-repeat;
+}
+
+#mc-form {
+    height: 0;
+    overflow: hidden;
 }

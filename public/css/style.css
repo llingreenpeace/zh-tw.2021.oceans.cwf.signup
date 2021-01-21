@@ -56,8 +56,8 @@ Table of contents
     Google font
 ====================================== */
 
-/* @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700); */
+/* @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900); */
+/* @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700); */
 
 /* ===================================
     Reset
@@ -568,7 +568,7 @@ i { color: #9a9a9a; margin:0}
 .z-index-0 {z-index:0 !important;}
 .z-index-minus2 {z-index:-2 !important;}
 .no-transition *, .owl-carousel *, .mfp-container * { transition-timing-function: none; -moz-transition-timing-function: none; -webkit-transition-timing-function: none; -o-transition-timing-function: none; transition-duration: 0s; -moz-transition-duration: 0s; -webkit-transition-duration: 0s; -o-transition-duration: 0s; }
-section { padding: 130px 0; }
+section { padding: 80px 0; }
 .button-bg-area{padding: 80px 0;}
 
 /* ===================================
@@ -1551,7 +1551,7 @@ footer img {max-width: 156px;}
 ====================================== */
 
 .photography-about { min-height: 830px}
-.photography-quotes:before { content: "“"; color: #85eea5; font-size: 200px; position: absolute; }
+.photography-quotes:before { content: "“"; color: #f2443e; font-size: 200px; position: absolute; font-family: 'Roboto', sans-serif !important; }
 .arrow-link {padding: 0 15px 0 0; z-index: 1}
 .arrow-link:before{ background: url('../images/arrow.png') right 7px no-repeat; content: "arrow"; text-indent: -9999px; width: 100%; position: absolute; z-index: -1}
 .arrow-link:hover {padding: 0 30px 0 0; z-index: 1;}

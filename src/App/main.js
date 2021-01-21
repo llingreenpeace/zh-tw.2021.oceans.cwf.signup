@@ -1,4 +1,5 @@
 import './main.scss'
+const dayjs = require("dayjs")
 const ProgressBar = require('progressbar.js')
 const {$, dataLayer, currency} = window
 
@@ -85,12 +86,6 @@ const initForm = () => {
         "taiwan-phone",
         function (value, element) {
             
-            // const phoneReg1 = new RegExp(/0\d{1,2}-\d{6,8}$/).test(value);
-            // const phoneReg2 = new RegExp(/0\d{1,2}\d{6,8}$/).test(value);
-            // const phoneReg3 = new RegExp(/((?=(09))[0-9]{10})$/).test(value);
-            // const phoneReg4 = new RegExp(/(886\d{1,2}\d{6,8})$/).test(value);
-            // const phoneReg5 = new RegExp(/(886\d{1,2}-\d{7,9})$/).test(value);
-
             const phoneReg6 = new RegExp(/^(0|886|\+886)?(9\d{8})$/).test(value);
 			const phoneReg7 = new RegExp(/^(0|886|\+886){1}[2-8]-?\d{6,8}$/).test(value);
 
@@ -114,22 +109,65 @@ const initForm = () => {
         },
         submitHandler: function(form) {
             
-            $('#en__field_supporter_firstName').val($('#fake_supporter_firstName').val());
-            $('#en__field_supporter_lastName').val($('#fake_supporter_lastName').val());
-            $('#en__field_supporter_emailAddress').val($('#fake_supporter_emailAddress').val());
-    
-            if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
-                $('#en__field_supporter_phoneNumber').val('0900000000');
+            // modify the original form
+        $('#mc-form [name="Email"]').value = $('#fake_supporter_emailAddress').val();
+        $('#mc-form [name="LastName"]').value = $('#fake_supporter_lastName').val();
+        $('#mc-form [name="FirstName"]').value = $('#fake_supporter_firstName').val();
+        $('#mc-form [name="MobilePhone"]').value = $('#fake_supporter_phone').val();
+        $('#mc-form [name="OptIn"]').value = $('#fake_optin').val();
+        $('#mc-form [name="Birthdate"]').value = dayjs(
+            $('#fake_supporter_birthYear').val()
+        ).format("YYYY-MM-DD");
+        //console.log("optin:", $('#mc-form [name="OptIn"]').value);
+        // collect values from form
+        let formData = new FormData();
+        $("#mc-form input").forEach(function (el) {
+            let v = null;
+            if (el.type === "checkbox") {
+            v = $('#mc-form [name="OptIn"]').value;
             } else {
-                $('#en__field_supporter_phoneNumber').val($('#fake_supporter_phone').val());
+            v = el.value;
             }
-            $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
-            $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
+
+            formData.append(el.name, v);
+            //console.log('use', el.name, v)
+        });
+
+        // need testing
+        return fetch($("#mc-form").action, {
+            method: "POST",
+            body: formData,
+        })
+            .then((response) => response.json())
+            .then((response) => {
+            if (response) {
+                console.log("mc form posted")
+                console.log('response', response)
+                this.sendPetitionTracking('2021-plastic_retailer');
+            }
+            })
+            .catch((error) => {
+                console.log(error);
+                this.formLoading = false;
+                // this.$emit("removeCover");
+            });
+
+            // $('#en__field_supporter_firstName').val($('#fake_supporter_firstName').val());
+            // $('#en__field_supporter_lastName').val($('#fake_supporter_lastName').val());
+            // $('#en__field_supporter_emailAddress').val($('#fake_supporter_emailAddress').val());
+    
+            // if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
+            //     $('#en__field_supporter_phoneNumber').val('0900000000');
+            // } else {
+            //     $('#en__field_supporter_phoneNumber').val($('#fake_supporter_phone').val());
+            // }
+            // $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
+            // $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
             
-            console.log('en form submit')
-            // console.log($('form.en__component--page').serialize())
+            // console.log('en form submit')
+            // // console.log($('form.en__component--page').serialize())
             
-            $("form.en__component--page").submit();
+            // $("form.en__component--page").submit();
         },
         invalidHandler: function(event, validator) {
             // 'this' refers to the form
