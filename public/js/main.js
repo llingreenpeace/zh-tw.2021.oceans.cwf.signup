@@ -176,7 +176,8 @@ $(document).ready(function () {
     });
     var IsParallaxGenerated = false;
     function SetParallax() {
-        if ($(window).width() > 1030 && !IsParallaxGenerated) {
+        if (!IsParallaxGenerated) {
+            console.log("parallax init")
             $('.parallax1').parallax("50%", 0.1);
             $('.parallax2').parallax("0", 0);
             $('.parallax3').parallax("50%", 0.3);
