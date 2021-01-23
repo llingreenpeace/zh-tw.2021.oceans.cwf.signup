@@ -345,7 +345,7 @@
     .personal .container { width: 100% !important;}
     
     /*  parallax / background  */
-    .parallax-fix{ background-attachment: scroll !important; }
+    /* .parallax-fix{ background-attachment: scroll !important; } */
     .fix-background { background-attachment:inherit !important}
     
     /* photography */
@@ -552,7 +552,7 @@
     .sm-font-weight-800 { font-weight:800 !important}
     
     /* background image */
-    .parallax-fix { background-attachment: inherit !important}
+    /* .parallax-fix { background-attachment: inherit !important} */
 
     /* icon */
     i { color: #9a9a9a; margin:0}

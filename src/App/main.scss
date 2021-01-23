@@ -13,6 +13,9 @@ body {
     overflow-x: hidden;
 }
 
+footer {
+    position: relative;;
+}
 .error {
     color: white;
 }
@@ -24,6 +27,7 @@ body {
 .headline {
     margin-bottom: 40px;
 }
+
 
 .section-title-main {
     &:before {
@@ -70,24 +74,20 @@ body {
     padding: 0 !important;
     line-height: 2;
     position: relative;
-    .parallax-fix {
-        // min-height: 600px;
-        height: auto;
-        .opacity-full {
-            padding-top: 10%;
-            padding-bottom: 10%;
-            h3 {
-                line-height: 1.6;
-            }
-            .scroll-btn {
-                background-color: $main--color;
-                color: white;
-                border: none;
-            }
-            .scroll-btn:hover {
-                color: $main--color;
-                background-color: white;
-            }
+    .opacity-full {
+        padding-top: 10%;
+        padding-bottom: 10%;
+        h3 {
+            line-height: 1.6;
+        }
+        .scroll-btn {
+            background-color: $main--color;
+            color: white;
+            border: none;
+        }
+        .scroll-btn:hover {
+            color: $main--color;
+            background-color: white;
         }
     }
 }
@@ -217,6 +217,7 @@ body {
 }
 #speakers {
     padding-top: 5%;
+    background-color: white;
 }
 #intro {
     height: 100vh;
@@ -240,6 +241,15 @@ body {
 
 .third-section {
     background-repeat: no-repeat;
+}
+.parallax-bg {
+    background-position: center; 
+    background-size: cover;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    width:100vw;
+    height: 100vh;
 }
 
 #mc-form {

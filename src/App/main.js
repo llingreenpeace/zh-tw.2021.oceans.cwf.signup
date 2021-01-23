@@ -199,5 +199,15 @@ function init () {
         $('.page-2').show();
         $("section").hide();
         $("#home").show();
-	}
+    }
+    
+    $(window).scroll(function () {
+        console.log($(this).scrollTop())
+        console.log($('#speakers').offset().top)
+        if ($(this).scrollTop() > 100 && $(this).scrollTop() < $('#speakers').offset().top) {
+            $('.parallax-bg').show();
+        } else {
+            $('.parallax-bg').hide();
+        }
+    });
 }
