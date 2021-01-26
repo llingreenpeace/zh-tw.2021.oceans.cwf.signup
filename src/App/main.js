@@ -110,41 +110,52 @@ const initForm = () => {
         submitHandler: function(form) {
             
             // modify the original form
-        $('#mc-form [name="Email"]').value = $('#fake_supporter_emailAddress').val();
-        $('#mc-form [name="LastName"]').value = $('#fake_supporter_lastName').val();
-        $('#mc-form [name="FirstName"]').value = $('#fake_supporter_firstName').val();
-        $('#mc-form [name="MobilePhone"]').value = $('#fake_supporter_phone').val();
-        $('#mc-form [name="OptIn"]').value = $('#fake_optin').val();
-        $('#mc-form [name="Birthdate"]').value = dayjs(
-            $('#fake_supporter_birthYear').val()
-        ).format("YYYY-MM-DD");
+        $('#mc-form [name="Email"]').val($('#fake_supporter_emailAddress').val())
+        $('#mc-form [name="LastName"]').val($('#fake_supporter_lastName').val());
+        $('#mc-form [name="FirstName"]').val($('#fake_supporter_firstName').val());
+        $('#mc-form [name="MobilePhone"]').val($('#fake_supporter_phone').val());
+        $('#mc-form [name="OptIn"]').val($('#fake_optin').prop('checked'));
+        $('#mc-form [name="Birthdate"]').val(dayjs($('#fake_supporter_birthYear').val()).format("YYYY-MM-DD"));
         //console.log("optin:", $('#mc-form [name="OptIn"]').value);
         // collect values from form
         let formData = new FormData();
-        $("#mc-form input").forEach(function (el) {
+        Object.keys($("#mc-form input")).forEach(function (el) {
+            let e = $("#mc-form input")[el]
             let v = null;
-            if (el.type === "checkbox") {
-            v = $('#mc-form [name="OptIn"]').value;
+            if (e.type === "checkbox") {
+                // console.log(e)
+                v = $('#fake_optin').prop('checked');
             } else {
-            v = el.value;
+                v = e.value;
             }
 
-            formData.append(el.name, v);
-            //console.log('use', el.name, v)
+            formData.append(e.name, v);
+            // console.log('use', e.name, v)
         });
 
+        console.log($("#mc-form").attr("action"))
         // need testing
-        return fetch($("#mc-form").action, {
+        return fetch($("#mc-form").attr("action"), {
             method: "POST",
             body: formData,
-        })
-            .then((response) => response.json())
+        }).then((response) => {
+                // console.log(response)
+                if (response.ok) {
+                    return response.json()
+                } 
+                throw({
+                    ok: response.ok,
+                    status: response.status,
+                    statusText: response.statusText,
+                    type: response.type,
+                })
+            })
             .then((response) => {
-            if (response) {
-                console.log("mc form posted")
-                console.log('response', response)
-                this.sendPetitionTracking('2021-plastic_retailer');
-            }
+                if (response) {
+                    console.log("mc form posted")
+                    console.log('response', response)
+                    this.sendPetitionTracking('2021-plastic_retailer');
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -202,8 +213,8 @@ function init () {
     }
     
     $(window).scroll(function () {
-        console.log($(this).scrollTop())
-        console.log($('#speakers').offset().top)
+        // console.log($(this).scrollTop())
+        // console.log($('#speakers').offset().top)
         if ($(this).scrollTop() > 100 && $(this).scrollTop() < $('#speakers').offset().top) {
             $('.parallax-bg').show();
         } else {

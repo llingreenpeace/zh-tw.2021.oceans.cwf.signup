@@ -201,7 +201,13 @@ footer {
     h1 {
         font-size: 2rem !important;
     }
-    
+}
+
+@media (max-width: 991px) {
+    .architecture-details {
+        opacity: 1;
+        bottom: 10px;
+    }
 }
 
 // modified for policy petition campaign
