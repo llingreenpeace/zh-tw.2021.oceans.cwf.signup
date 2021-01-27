@@ -3,6 +3,25 @@ const dayjs = require("dayjs")
 const ProgressBar = require('progressbar.js')
 const {$, dataLayer, currency} = window
 
+let footer_main_page_url = `https://www.greenpeace.org/taiwan/?ref=2021-plastic_policy_petition`
+let footer_donate_url = `https://supporter.ea.greenpeace.org/tw/s/donate?campaign=plastics&ref=2021-plastic_policy_petition-footer`
+let footer_privacy_url = `https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2021-plastic_policy_petition`
+
+window.directTo = function (type) {
+    switch (type){
+        case 'main':
+            window.open(footer_main_page_url, '_blank');
+            break
+        case 'donate':
+            window.open(footer_donate_url, '_blank');
+            break
+        case 'privacy':
+            window.open(footer_privacy_url, '_blank');
+            break
+        default: 
+        window.open(footer_privacy_url, '_blank');
+    }
+}
 
 $(document).ready(function() {
     console.log( "ready!" );
@@ -14,19 +33,23 @@ $(document).ready(function() {
 
 async function initProgressBar() {
 
-    const goal = 20000;
+    let count = parseInt($('#mc-form [name="numResponses"]').val());
+    console.log(count);
+
+    const goal = Math.ceil(count / 5000) * 5000
+    console.log(goal);
     $('#petition-goal').html(currency(goal, { precision: 0, separator: ',' }).format());
+    $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
 
-    let count = 2737;
-    try {
-        let response = await fetch('https://act.greenpeace.org/page/widget/713556');
-        let res = await response.json();
-        count = res.data.rows.map((item) => {return parseInt(item.columns[4].value)}).reduce((a, b) => {return a + b}, 0);
-        $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
+    // try {
+    //     let response = await fetch('https://act.greenpeace.org/page/widget/713556');
+    //     let res = await response.json();
+    //     count = res.data.rows.map((item) => {return parseInt(item.columns[4].value)}).reduce((a, b) => {return a + b}, 0);
+    //     $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
 
-    } catch (err) {
-        console.log(err);
-    }
+    // } catch (err) {
+    //     console.log(err);
+    // }
     let percent = count / goal;
 
     let bar = new ProgressBar.Line('#progress-bar', {
@@ -128,18 +151,18 @@ const initForm = () => {
             } else {
                 v = e.value;
             }
-
             formData.append(e.name, v);
             // console.log('use', e.name, v)
         });
 
-        console.log($("#mc-form").attr("action"))
+        // console.log($("#mc-form").attr("action"))
         // need testing
+        $(".loading-cover").fadeIn();
         return fetch($("#mc-form").attr("action"), {
             method: "POST",
             body: formData,
         }).then((response) => {
-                // console.log(response)
+                $(".loading-cover").fadeOut();
                 if (response.ok) {
                     return response.json()
                 } 
@@ -154,31 +177,20 @@ const initForm = () => {
                 if (response) {
                     console.log("mc form posted")
                     console.log('response', response)
-                    this.sendPetitionTracking('2021-plastic_retailer');
+                    window.pageJson.pageNumber = 2;
+                    $(".page-1").hide();
+                    $(".page-2").show();
+                    footer_main_page_url += `_tkpage`;
+                    footer_donate_url += `_tkpage`;
+                    footer_privacy_url += `_tkpage`;
+                    sendPetitionTracking('2021-plastic_policy');
                 }
             })
             .catch((error) => {
                 console.log(error);
                 this.formLoading = false;
-                // this.$emit("removeCover");
+                
             });
-
-            // $('#en__field_supporter_firstName').val($('#fake_supporter_firstName').val());
-            // $('#en__field_supporter_lastName').val($('#fake_supporter_lastName').val());
-            // $('#en__field_supporter_emailAddress').val($('#fake_supporter_emailAddress').val());
-    
-            // if (!$('#fake_supporter_phone').prop('required') && !$('#fake_supporter_phone').val()) {
-            //     $('#en__field_supporter_phoneNumber').val('0900000000');
-            // } else {
-            //     $('#en__field_supporter_phoneNumber').val($('#fake_supporter_phone').val());
-            // }
-            // $('#en__field_supporter_NOT_TAGGED_6').val($('#fake_supporter_birthYear').val());
-            // $('#en__field_supporter_questions_7276').val(($('#fake_optin').prop("checked") ? "Y": "N"));
-            
-            // console.log('en form submit')
-            // // console.log($('form.en__component--page').serialize())
-            
-            // $("form.en__component--page").submit();
         },
         invalidHandler: function(event, validator) {
             // 'this' refers to the form
@@ -212,13 +224,40 @@ function init () {
         $("#home").show();
     }
     
+    $(".loading-cover").fadeOut();
+
     $(window).scroll(function () {
-        // console.log($(this).scrollTop())
-        // console.log($('#speakers').offset().top)
         if ($(this).scrollTop() > 100 && $(this).scrollTop() < $('#speakers').offset().top) {
             $('.parallax-bg').show();
         } else {
             $('.parallax-bg').hide();
         }
     });
+}
+
+/**
+ * Send the tracking event to the ga
+ * @param  {string} eventLabel The ga trakcing name, normally it will be the short campaign name. ex 2019-plastic_retailer
+ * @param  {[type]} eventValue Could be empty
+ * @return {[type]}            [description]
+ */
+function sendPetitionTracking(eventLabel, eventValue) {
+	window.dataLayer = window.dataLayer || [];
+
+	window.dataLayer.push({
+	    'event': 'gaEvent',
+	    'eventCategory': 'petitions',
+	    'eventAction': 'signup',
+	    'eventLabel': eventLabel,
+	    'eventValue' : eventValue
+	});
+
+	window.dataLayer.push({
+	    'event': 'fbqEvent',
+	    'contentName': eventLabel,
+	    'contentCategory': 'Petition Signup'
+	});
+
+	window.uetq = window.uetq || [];  
+	window.uetq.push ('event', 'signup', {'event_category': 'petitions', 'event_label': eventLabel, 'event_value': 0});
 }

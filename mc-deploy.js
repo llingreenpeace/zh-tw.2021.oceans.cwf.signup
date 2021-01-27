@@ -34,7 +34,7 @@ const FTPS = require('ftps');
 // definitions
 let buildFolder = path.join(__dirname, "build")
 	EndpointURL = "https://cloud.greentw.greenpeace.org/petition-pp",
-	CampaignId = "7012u000000OulMAAS",
+	CampaignId = "7012u000000P1N8AAK",
 	DonationPageUrl = "https://www.greenpeace.org/eastasia/", // not used now
 	interests = ["Plastics"], // Arctic, Climate, Forest, Health, Oceans, Plastics
 	ftpConfigName = "ftp_tw", // refer to ~/.npm-en-uploader-secret
