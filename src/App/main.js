@@ -2,6 +2,7 @@ import './main.scss'
 const dayjs = require("dayjs")
 const ProgressBar = require('progressbar.js')
 const {$, dataLayer, currency} = window
+const Mailcheck = require('mailcheck');
 
 let footer_main_page_url = `https://www.greenpeace.org/taiwan/?ref=2021-plastic_policy_petition`
 let footer_donate_url = `https://supporter.ea.greenpeace.org/tw/s/donate?campaign=plastics&ref=2021-plastic_policy_petition-footer`
@@ -26,10 +27,53 @@ window.directTo = function (type) {
 $(document).ready(function() {
     console.log( "ready!" );
     initProgressBar();
-    createYearOptions()
+    createYearOptions();
     initForm();
+    checkEmail();
     init();
 });
+
+/**
+ * email suggestion / email correction
+ */
+function checkEmail() {    
+	let domains = [
+		"me.com",
+		"outlook.com",
+		"netvigator.com",
+		"cloud.com",
+		"live.hk",
+		"msn.com",
+		"gmail.com",
+		"hotmail.com",
+		"ymail.com",
+		"yahoo.com",
+		"yahoo.com.tw",
+		"yahoo.com.hk"
+	];
+	let topLevelDomains = ["com", "net", "org"];
+
+	$("#fake_supporter_emailAddress").on('blur', function() {
+        console.log($("#fake_supporter_emailAddress").val())
+		Mailcheck.run({
+			email: $("#fake_supporter_emailAddress").val(),
+			domains: domains, // optional
+			topLevelDomains: topLevelDomains, // optional
+			suggested: (suggestion) => {      
+                $('.email-suggestion').remove();
+                $(`<div class="email-suggestion">您想輸入的是 <strong id="emailSuggestion">${suggestion.full}</strong> 嗎？</div>`).insertAfter("#fake_supporter_emailAddress");
+                
+                $(".email-suggestion").click(function() {
+                    $("#fake_supporter_emailAddress").val($('#emailSuggestion').html());
+                    $('.email-suggestion').remove();
+                });
+			},
+			empty: () => {
+				// this.emailSuggestion = null
+			}
+		});
+	});
+}
 
 async function initProgressBar() {
 

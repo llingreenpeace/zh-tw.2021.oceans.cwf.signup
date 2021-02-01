@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "dayjs": "^1.10.3",
+    "dayjs": "^1.10.4",
     "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader",
+    "mailcheck": "^1.1.1",
     "progressbar.js": "^1.1.0"
   },
   "devDependencies": {
