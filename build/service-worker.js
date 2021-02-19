@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/precache-manifest.f268537effca30f31bf5018648a91b12.js"
+  "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup/precache-manifest.15209c51d864e1537b7d175380703d3d.js"
 );
 
 self.addEventListener('message', (event) => {
