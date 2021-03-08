@@ -1,12 +1,17 @@
-import './main.scss'
+import './main.scss';
+import 'slick-carousel';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+var jquery = require("jquery");
 const dayjs = require("dayjs")
 const ProgressBar = require('progressbar.js')
 const {$, dataLayer, currency} = window
 const Mailcheck = require('mailcheck');
 
-let footer_main_page_url = `https://www.greenpeace.org/taiwan/?ref=2021-plastic_policy_petition`
-let footer_donate_url = `https://supporter.ea.greenpeace.org/tw/s/donate?campaign=plastics&ref=2021-plastic_policy_petition-footer`
-let footer_privacy_url = `https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2021-plastic_policy_petition`
+
+let footer_main_page_url = `https://www.greenpeace.org/taiwan/?ref=2021-oceans_cwf_petition-footer`
+let footer_donate_url = `https://supporter.ea.greenpeace.org/tw/s/donate?campaign=cwf&ref=2021-oceans_cwf_petition-footer`
+let footer_privacy_url = `https://www.greenpeace.org/taiwan/policies/privacy-and-cookies/?ref=2021-oceans_cwf_petition-footer`
 
 window.directTo = function (type) {
     switch (type){
@@ -31,6 +36,7 @@ $(document).ready(function() {
     initForm();
     checkEmail();
     init();
+    initSwiper();
 });
 
 /**
@@ -78,10 +84,14 @@ function checkEmail() {
 async function initProgressBar() {
 
     let count = parseInt($('#mc-form [name="numResponses"]').val());
-    console.log(count);
+    if (count < 2073)
+        count = 2073;
+    //console.log(count);
 
-    const goal = Math.ceil(count / 5000) * 5000
-    console.log(goal);
+    let goal = Math.ceil(count / 100000) * 100000
+    if (goal < 100000)
+        goal = 100000;
+    //console.log(goal);
     $('#petition-goal').html(currency(goal, { precision: 0, separator: ',' }).format());
     $('#petition-count').html(currency(count, { precision: 0, separator: ',' }).format());
 
@@ -112,7 +122,7 @@ async function initProgressBar() {
 function createYearOptions() {
     let currYear = new Date().getFullYear()
     $("#fake_supporter_birthYear").append(`<option value="">出生年份</option>`);
-    for (var i = 0; i < 80; i++) {
+    for (var i = 0; i < 100; i++) {
         let option = `<option value="01/01/${currYear-i}">${currYear-i}</option>`
 
         $("#fake_supporter_birthYear").append(option);
@@ -227,7 +237,7 @@ const initForm = () => {
                     footer_main_page_url += `_tkpage`;
                     footer_donate_url += `_tkpage`;
                     footer_privacy_url += `_tkpage`;
-                    sendPetitionTracking('2021-plastic_policy');
+                    sendPetitionTracking('2021-oceans_cwf');
                 }
             })
             .catch((error) => {
@@ -253,6 +263,14 @@ const initForm = () => {
 }
 
 function init () {
+    // hide donation btn in DD page	
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);		
+    if (urlParams.get('utm_source') === "dd") {
+        $('.hidden-from-dd-page').hide();
+
+        $('#fake_supporter_phone').removeAttr("required"); //移除電話欄位 required Attr		
+    }
     
     const EN_PAGE_STATUS = resolveEnPagePetitionStatus()
 	// console.log("EN_PAGE_STATUS", EN_PAGE_STATUS)
@@ -265,7 +283,7 @@ function init () {
         $('.page-1').hide();
         $('.page-2').show();
         $("section").hide();
-        $("#home").show();
+        $("#home").show();        
     }
     
     $(".loading-cover").fadeOut();
@@ -277,6 +295,36 @@ function init () {
             $('.parallax-bg').hide();
         }
     });
+}
+
+function initSwiper() {
+    //if (document.body.clientWidth <= 800) {    
+        
+        jquery(".swiper-wrapper").slick({        
+            dots: true,
+            autoplay: true,
+            arrows: false,
+            /*centerMode: true,*/
+            mobileFirst: true,
+            /*infinite: false,*/
+        });  
+    /*        
+        jquery(".process-carousel").slick({        
+            dots: true,
+            autoplay: false,
+            arrows: false,
+            centerMode: true,
+            mobileFirst: true,
+            infinite: false,
+        });
+    }
+    else {
+        jquery(".swiper-wrapper").slick({
+            dots: true,
+            autoplay: true,
+            arrows: false,            
+        });    
+    }*/
 }
 
 /**

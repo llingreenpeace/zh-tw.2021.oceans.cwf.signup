@@ -1,12 +1,13 @@
 {
-  "name": "zh-TW.2021.plastics.plastic_policy.signup",
+  "name": "zh-TW.2021.oceans.cwf.signup",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "dayjs": "^1.10.4",
-    "gpea-npm-en-uploader": "greenpeace/gpea-npm-en-uploader",
+    "jquery": "^3.5.1",
     "mailcheck": "^1.1.1",
-    "progressbar.js": "^1.1.0"
+    "progressbar.js": "^1.1.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "node-sass": "^4.13.1",
@@ -16,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "PUBLIC_URL=https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.plastics.plastic_policy.signup react-scripts build",
+    "build": "set PUBLIC_URL=https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup&&react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "yarn run build && node mc-deploy.js "

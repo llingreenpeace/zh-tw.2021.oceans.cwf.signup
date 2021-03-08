@@ -1,7 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const os = require('os');
-const FTPS = require('ftps');
 
 /**
  * This file is a temporary script to replace gpea-npm-en-uploader
@@ -34,48 +32,15 @@ const FTPS = require('ftps');
 // definitions
 let buildFolder = path.join(__dirname, "build")
 	EndpointURL = "https://cloud.greentw.greenpeace.org/petition-pp",
-	CampaignId = "7012u000000P1N8AAK",
+	CampaignId = "7012u000000P2LSAA0",
 	DonationPageUrl = "https://www.greenpeace.org/eastasia/", // not used now
-	interests = ["Plastics"], // Arctic, Climate, Forest, Health, Oceans, Plastics
+	interests = ["Oceans"], // Arctic, Climate, Forest, Health, Oceans, Plastics
 	ftpConfigName = "ftp_tw", // refer to ~/.npm-en-uploader-secret
-	ftpRemoteDir = "/htdocs/2021/petition/zh-TW.2021.plastics.plastic_policy.signup"
+	ftpRemoteDir = "/htdocs/2021/petition/zh-TW.2021.oceans.cwf.signup"
 
 let indexHtmlFilePath = path.join(buildFolder, "index.html")
 let fbuf = fs.readFileSync(indexHtmlFilePath)
 let content = fbuf.toString()
-
-// copied from https://github.com/greenpeace/gpea-npm-en-uploader/blob/master/upload_folder.js
-/**
- * Use lftp to sync local dir to remote
- *
- * @param  {object} settings
- * @param  {string} localDir Local folder to update
- * @param  {string} remoteDir The remote path to upload. If it's not exist, it will be created.
- */
-const upload_folder = function (settings, localDir) {
-	// @see https://github.com/Atinux/node-ftps for arguments
-	var ftps = new FTPS(settings);
-
-	console.info(`Sync from \`${localDir}\` to \`${settings.protocol}://${settings.username}@${settings.host}:${settings.remoteDir}\``)
-
-	return ftps.mirror({
-			localDir: localDir,
-			remoteDir: settings.remoteDir,
-			upload: true
-		})
-		.cd(settings.remoteDir)
-		.ls()
-		.exec(function (err, res) {
-			// err will be null (to respect async convention)
-			// res is an hash with { error: stderr || null, data: stdout }
-			if (err) {
-				console.error(err)
-			} else {
-				console.info("Successfully uploaded.")
-				console.info(res.data)
-			}
-		});
-}
 
 // patch form contents
 let formTmpl =

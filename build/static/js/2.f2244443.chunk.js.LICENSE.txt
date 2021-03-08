@@ -1,0 +1,41 @@
+/*!
+     *  TERMS OF USE - EASING EQUATIONS
+     *  Open source under the BSD License.
+     *  Easing Equations (c) 2003 Robert Penner, all rights reserved.
+     */
+
+/*!
+     * All equations are adapted from Thomas Fuchs'
+     * [Scripty2](https://github.com/madrobby/scripty2/blob/master/src/effects/transitions/penner.js).
+     *
+     * Based on Easing Equations (c) 2003 [Robert
+     * Penner](http://www.robertpenner.com/), all rights reserved. This work is
+     * [subject to terms](http://www.robertpenner.com/easing_terms_of_use.html).
+     */
+
+/*!
+   * Sizzle CSS Selector Engine v2.3.5
+   * https://sizzlejs.com/
+   *
+   * Copyright JS Foundation and other contributors
+   * Released under the MIT license
+   * https://js.foundation/
+   *
+   * Date: 2020-03-14
+   */
+
+/*!
+ * jQuery JavaScript Library v3.5.1
+ * https://jquery.com/
+ *
+ * Includes Sizzle.js
+ * https://sizzlejs.com/
+ *
+ * Copyright JS Foundation and other contributors
+ * Released under the MIT license
+ * https://jquery.org/license
+ *
+ * Date: 2020-05-04T22:49Z
+ */
+
+/*! Shifty 2.9.1 - https://github.com/jeremyckahn/shifty */
