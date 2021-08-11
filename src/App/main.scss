@@ -664,5 +664,21 @@ footer {
         h1, h3 {
             line-height: 30px;
         }
+
+        h3 {        
+            font-size: 1.3rem !important;
+        }
     }
+}
+
+.line-div {
+    display: block;
+}
+
+.line-div a {
+    color: #fff;
+}
+
+.is-show-at-dd-page-only {
+    display: none;
 }

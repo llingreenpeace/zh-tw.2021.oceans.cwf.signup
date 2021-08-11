@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f1f5d8fb21c44e7a188fe159c552d31f",
+    "revision": "f5a39977ce5470789918a5ffe85aeae5",
     "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/css/2.799a93c8.chunk.css"
   },
   {
-    "revision": "e3bcfca98165616fe135",
-    "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/css/main.03a481fd.chunk.css"
+    "revision": "73c176365708cf9eeb36",
+    "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/css/main.887d0580.chunk.css"
   },
   {
     "revision": "6488174fbe799d179a24",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/js/2.f2244443.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "e3bcfca98165616fe135",
-    "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/js/main.5ce40e20.chunk.js"
+    "revision": "73c176365708cf9eeb36",
+    "url": "https://change.greenpeace.org.tw/2021/petition/zh-TW.2021.oceans.cwf.signup/static/js/main.2a45810d.chunk.js"
   },
   {
     "revision": "040b27cb35516b33ede1",

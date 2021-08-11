@@ -164,12 +164,13 @@ const initForm = () => {
         function (value, element) {
             
             const phoneReg6 = new RegExp(/^(0|886|\+886)?(9\d{8})$/).test(value);
-			const phoneReg7 = new RegExp(/^(0|886|\+886){1}[2-8]-?\d{6,8}$/).test(value);
+            const phoneReg7 = new RegExp(/^(0|886|\+886){1}[3-8]-?\d{6,8}$/).test(value);
+            const phoneReg8 = new RegExp(/^(0|886|\+886){1}[2]-?\d{8}$/).test(value);
 
             if ($('#fake_supporter_phone').val()) {
-                return (phoneReg6 || phoneReg7)
+                return (phoneReg6 || phoneReg7 || phoneReg8)
             }
-            console.log('phone testing')
+            //console.log('phone testing')
             return true
         },
         "電話格式不正確，請只輸入數字 0912345678 和 02-23612351")
@@ -268,8 +269,22 @@ function init () {
     const urlParams = new URLSearchParams(queryString);		
     if (urlParams.get('utm_source') === "dd") {
         $('.hidden-from-dd-page').hide();
-
+        $('.is-show-at-dd-page-only').show();
         $('#fake_supporter_phone').removeAttr("required"); //移除電話欄位 required Attr		
+
+        if (urlParams.get('utm_content') === "tp") {
+			$('.line-tp').show();
+			$('.line-tc').hide();
+			$('.line-ks').hide();
+        } else if (urlParams.get('utm_content') === "tc") {
+			$('.line-tp').hide();
+			$('.line-tc').show();
+			$('.line-ks').hide();
+        } else {
+			$('.line-tp').hide();
+			$('.line-tc').hide();
+			$('.line-ks').show();
+        }
     }
     
     const EN_PAGE_STATUS = resolveEnPagePetitionStatus()
